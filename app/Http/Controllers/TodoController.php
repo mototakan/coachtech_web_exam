@@ -28,7 +28,7 @@ class TodoController extends Controller
         $todos = Todo::find($request->id);
         $form= $request->all();
         unset($form['_token']);
-        Todo::save($form);
+        Todo::create($form);
         return redirect('/');
     }
     public function destory(Request $request)
