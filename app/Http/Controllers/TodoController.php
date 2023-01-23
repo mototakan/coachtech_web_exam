@@ -19,7 +19,7 @@ class TodoController extends Controller
         $new_todo=new Todo();
         $form= $request->all();
         unset($form['_token']);
-        Todo::save($form);
+        Todo::create($form);
         return redirect('/');
         
     }
