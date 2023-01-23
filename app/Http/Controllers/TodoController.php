@@ -14,7 +14,7 @@ class TodoController extends Controller
         $todos = Todo::all();
         return view('index', ['todos'=> $todos]);
     }
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     {
         $new_todo=new Todo();
         $form= $request->all();
@@ -23,7 +23,7 @@ class TodoController extends Controller
         return redirect('/');
         
     }
-    public function update(Request $request)
+    public function update(TodoRequest $request)
     {
         $todos = Todo::find($request->id);
         $form= $request->all();
@@ -33,6 +33,7 @@ class TodoController extends Controller
     }
     public function destory(Request $request)
     {
+        $todo = Todo::find($request->id);
         Todo::find($request->id)->delete();
         return redirect('/');
     }

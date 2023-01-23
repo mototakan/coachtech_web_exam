@@ -29,7 +29,6 @@
             </tr>
             @foreach ($todos as $todo)
             <tr>
-                <td><input type="hidden" name="id" value="{{$todo->id}}"></td>
                 <td>{{$todo->created_at}}</td>
                 <form action="/todos/update" method="post">
                 @csrf
