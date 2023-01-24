@@ -13,6 +13,11 @@
     <div class="card">
       <p class="title mb-15">Todo List</p>
       <div class="todo">
+        <ul>
+          @foreach ($errors->all() as $error)
+          <li>{{$error}}</li>
+          @endforeach
+        </ul>
         <form action="/todos/create" method="post" class="flex between mb-30">
           @csrf
           <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
