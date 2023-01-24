@@ -32,6 +32,6 @@ class TodoRequest extends FormRequest
     {
         return [
     'content.required' => '内容を入力してください',
-    'content.max:20' => '内容は20文字を超えてはなりません'];
+    'content.max' => '内容は20文字を超えてはなりません'];
     }
 }
