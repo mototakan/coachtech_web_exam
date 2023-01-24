@@ -30,7 +30,7 @@
             @foreach ($todos as $todo)
             <tr>
                 <td>{{$todo->created_at}}</td>
-                <form action="/todos/update" method="post">
+                <form action="/todos/update{{$todo->id}}" method="post">
                 @csrf
                   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">              
                 <td>

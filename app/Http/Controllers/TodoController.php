@@ -25,10 +25,10 @@ class TodoController extends Controller
     }
     public function update(TodoRequest $request)
     {
-        $todos = Todo::find($request->id);
+        $todo = Todo::find($request->id);
         $form= $request->all();
         unset($form['_token']);
-        Todo::create($form);
+        Todo::where('id', $request->id)->update($form);
         return redirect('/');
     }
     public function destory(Request $request)
