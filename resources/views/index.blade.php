@@ -41,7 +41,7 @@
                 </td>
                 </form>
                 <td>
-                  <form action="/todos/delete" method="post">
+                  <form action="/todos/delete{{$todo->id}}" method="post">
                   @csrf
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"> 
                     <button class="button-delete">削除</button>
