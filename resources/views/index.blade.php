@@ -11,7 +11,23 @@
 <body>
   <div class="container">
     <div class="card">
-      <p class="title mb-15">Todo List</p>
+      <div class="card__header">
+        <p class="title mb-15">Todo List</p>
+          <div class="auth mb-15">
+            <p class="detail">
+              @if (Auth::check())
+              <p class="detail">「{{$user->name}}」でログイン中</p>
+              @else
+              <p>ログインしてください。（<a href="/login">ログイン</a>|<a href="/register">登録</a>）</p>
+              @endif
+            </p>
+            <form method="post" action="/logout">
+              @csrf
+              <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+              <input class="btn btn-logout" type="submit" value="ログアウト">
+            </form>
+          </div>
+      </div>
       <div class="todo">
         <ul>
           @foreach ($errors->all() as $error)

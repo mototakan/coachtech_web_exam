@@ -24,7 +24,8 @@ class TodoRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => ['required','max:20']
+            'content' => ['required','max:20'],
+            'tag'=>['required']
         ];
     }
 
@@ -33,5 +34,6 @@ class TodoRequest extends FormRequest
         return [
     'content.required' => '内容を入力してください',
     'content.max' => '内容は20文字を超えてはなりません'];
+    'tag.required' =>'タグを選択してください'
     }
 }
