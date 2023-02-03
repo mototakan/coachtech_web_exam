@@ -34,6 +34,21 @@
   color: #ff0000;
 }
 
+.btn-search:hover{
+  background-color: #cdf119;
+  border-color: #cdf119;
+  color: #fff;
+}
+
+.btn-search{
+  display: inline-block;
+  border: 2px solid #cdf119;
+  border-color: #cdf119;
+  text-decoration: none;
+  margin-bottom: 10px;
+
+}
+
 .btn{
   text-align:left;
   font-size:12px;

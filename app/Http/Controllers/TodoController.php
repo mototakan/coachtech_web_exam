@@ -10,49 +10,58 @@ use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
-    public function check(Request $request)
+    
+    public function find()
     {
-        $text=['text'=>'ログインしてください。'];
-        return view('auth',$text);
+        $todos=['input' => ''];
+        $user= Auth::user();
+        $tags=Tag::all();
+        return view('search',[$user,$todos,$tags]);
     }
-    public function checkUser(Request $request)
+
+    public function search(Request $request)
     {
-        $email=$request->email;
-        $password=$request->password;
-        if(Auth::attempt(['email'=>$email,
-        'password'=> $password])){
-            $text = Auth::user()->name.'さんがログインしました';
-        }else{
-            $text='ログインに失敗しました';
-        }
-        return view('auth',['text'=>$text]);
+        $user= Auth::user();
+        $tags=Tag::all();
+        $keyword= $request->keyword;
+        $tag_id= $request->tag_id;
+        return doSearch($keyword,$tag_id);
+        return view('search',[$user,$todos,$tags]);
     }
 
     public function index(Request $request)
     {
+        $todo=Todo::all();
         $user= Auth::user();
-        $todos = Todo::paginate(4);
         $param = ['todos'=> $todos, 'user'=>$user];
         return view('index', $param);
+        $tags=Tag::all();
+        return view('index',['tag'=>$tags]);
     }
-    public function store(TodoRequest $request)
+    public function create(TodoRequest $request)
     {
-        $new_todo=new Todo();
-        $form= $request->all();
-        unset($form['_token']);
-        Todo::create($form);
+        $content= $request->content;
+        $tag_id= $request->tag_id;
+        $todo=[
+            'content'=>$content,
+            'tag_id'=>$tag_id
+        ];
+        Todo::create($todo);
         return redirect('/');
         
     }
     public function update(TodoRequest $request)
     {
-        $todo = Todo::find($request->id);
-        $form= $request->all();
-        unset($form['_token']);
-        Todo::where('id', $request->id)->update($form);
+        $content= $request->content;
+        $tag_id= $request->tag_id;
+        $todo=[
+            'content'=>$content,
+            'tag_id'=>$tag_id
+        ];
+        Todo::where('id', $request->id)->update($todo);
         return redirect('/');
     }
-    public function destory(Request $request)
+    public function delete(Request $request)
     {
         Todo::find($request->id)->delete();
         return redirect('/');

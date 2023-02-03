@@ -25,10 +25,12 @@ Route::post('/login', [AuthenticatedSessionController::class,'store']);
 Route::get('/register',[RegisteredUserController::class,'create']);
 Route::post('/register',[RegisteredUserController::class,'store']);
 Route::post('/logout',[AuthenticatedSessionController::class,'destory']);
+Route::get('/todo/find',[TodoController::class,'find']);
+Route::get('/todo/search',[TodoController::class,'search']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/index', function () {
+    return view('index');
+})->middleware(['auth'])->name('index');
 
 require __DIR__.'/auth.php';
 

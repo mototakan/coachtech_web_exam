@@ -19,14 +19,16 @@ class Todo extends Model
     {
         return $this->belongsTo('App\Models\Tag');
     }
-    public function search(Request $request)
+    public function doSearch($keyword,$tag_id);
+    
+    public function isSelectedTag($tag_id)
     {
-        $keyword = $request->input('keyword');
-    $todo = Todo::where('content', 'LIKE BINARY',"%{$request->input}%")->first();
-    $param = [
-      'input' => $request->input,
-      'todo' => $todo
-    ];
-    return view('find', $param);
+    if ($todo->id == $tag_id)
+    {
+        $todo->tag->selected()
+    }else{
+        $todo->tag=null
     }
+    }
+    
 }

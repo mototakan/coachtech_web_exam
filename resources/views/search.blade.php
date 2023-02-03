@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/reset.css" >
   <link rel="stylesheet" href="/css/style.css" >
-  <title>Todolist</title>
+  <title>Todosearch</title>
 </head>
-<body>
+<body class="font-sans antialiased">
   <div class="container">
     <div class="card">
       <div class="card__header">
-        <p class="title mb-15">Todo List</p>
+        <p class="title mb-15">タスク検索</p>
           <div class="auth mb-15">
             <p class="detail">
               @if (Auth::check())
@@ -27,15 +27,14 @@
               <input class="btn btn-logout" type="submit" value="ログアウト">
             </form>
           </div>
-      </div>
-      <a class="btn btn-search" href="/todo/find">タスク検索</a>
-      <div class="todo">
+    </div>
+    <div class="todo">
         <ul>
           @foreach ($errors->all() as $error)
           <li>{{$error}}</li>
           @endforeach
         </ul>
-        <form action="/todo/create" method="post" class="flex between mb-30">
+        <form action="/todo/search" method="get" class="flex between mb-30">
           @csrf
           <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
           <input type="text" class="input-add" name="content">
@@ -46,7 +45,8 @@
             <option value="4">食事</option>
             <option value="5">移動</option>
           </select>
-          <input class="button-add" type="submit" value="追加">
+          <input type="text" name="keyword" value="{{ $keyword }}">
+          <input class="button-add" type="submit" name="search" value="検索">
         </form>
         <table>
           <tbody>
