@@ -31,11 +31,11 @@ class Todo extends Model
 
     public function isSelectedTag($tag_id)
     {
-    if ($this->id == $tag_id)
+    if ($this->tag_id == $tag_id)
     {
-        return $this->selected;
+        return 'selected';
     }else{
-        return selected('');
+        return '';
     }
     }
     
