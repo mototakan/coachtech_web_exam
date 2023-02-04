@@ -6,17 +6,23 @@ use App\Models\Todo;
 use Illuminate\Http\Request;
 use App\Http\Requests\TodoRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Tag;
 
 
 class TodoController extends Controller
 {
     
-    public function find()
+    public function find(Request $request)
     {
-        $todos=['input' => ''];
+        $todos=[];
         $user= Auth::user();
         $tags=Tag::all();
-        return view('search',[$user,$todos,$tags]);
+        $keyword= $request->keyword;
+        return view('search',[
+            'user'=>$user,
+            'todos'=>$todos,
+            'tags'=>$tags,
+            'keyword'=>$keyword]);
     }
 
     public function search(Request $request)
@@ -25,15 +31,19 @@ class TodoController extends Controller
         $tags=Tag::all();
         $keyword= $request->keyword;
         $tag_id= $request->tag_id;
-        return doSearch($keyword,$tag_id);
-        return view('search',[$user,$todos,$tags]);
+        $todos=Todo::doSearch($keyword,$tag_id);
+        return view('search',[
+            'user'=>$user,
+            'todos'=>$todos,
+            'tags'=>$tags,
+            'keyword'=>$keyword]);
     }
 
     public function index(Request $request)
     {
         $todo=Todo::all();
         $user= Auth::user();
-        $param = ['todos'=> $todos, 'user'=>$user];
+        $param = ['todos'=> $todo, 'user'=>$user];
         return view('index', $param);
         $tags=Tag::all();
         return view('index',['tag'=>$tags]);

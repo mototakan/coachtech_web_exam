@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Todo extends Model
 {
     use HasFactory;
@@ -20,10 +21,12 @@ class Todo extends Model
         return $this->belongsTo('App\Models\Tag');
     }
 
-    $keyword = $request->input('content');
-    public function doSearch($keyword,$tag_id)
+    public static function doSearch($keyword,$tag_id)
     {
-        Todo::find($keyword,$request->tag_id);
+        $todo=Todo::all();
+        $todo->where('content','LIKE',$keyword)->get();
+        $todo->where('tag_id','LIKE',$tag_id)->get();
+        return $todo;
     }
 
     public function isSelectedTag($tag_id)
@@ -32,7 +35,7 @@ class Todo extends Model
     {
         return $this->selected;
     }else{
-        return selected('')
+        return selected('');
     }
     }
     
