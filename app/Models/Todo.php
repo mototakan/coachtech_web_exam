@@ -19,15 +19,20 @@ class Todo extends Model
     {
         return $this->belongsTo('App\Models\Tag');
     }
-    public function doSearch($keyword,$tag_id);
-    
+
+    $keyword = $request->input('content');
+    public function doSearch($keyword,$tag_id)
+    {
+        Todo::find($keyword,$request->tag_id);
+    }
+
     public function isSelectedTag($tag_id)
     {
-    if ($todo->id == $tag_id)
+    if ($this->id == $tag_id)
     {
-        $todo->tag->selected()
+        return $this->selected;
     }else{
-        $todo->tag=null
+        return selected('')
     }
     }
     

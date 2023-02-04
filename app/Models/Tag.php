@@ -9,7 +9,7 @@ class Tag extends Model
 {
     use HasFactory;
 
-    public function todo()
+    public function todos()
     {
         return $this->hasMany('App\Models\Todo');
     }

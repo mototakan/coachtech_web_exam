@@ -25,7 +25,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name'=>['required','string','max:191'],
-            'email'=>['required','email','min:8','max:191','unique:users,email'],
+            'email'=>['required','email','min:8','max:191',Rule::unique('users')->ignore($this->user->id),],
             'password'=>['required','min:8','max:191','confirmed',]
             'password_confirmation' => 'required',
         ];
