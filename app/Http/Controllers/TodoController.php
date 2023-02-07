@@ -52,14 +52,21 @@ class TodoController extends Controller
     {
         $content= $request->content;
         $tag_id= $request->tag_id;
+        $user_id= $request->user_id;
         $todo=[
             'content'=>$content,
-            'tag_id'=>$tag_id
+            'tag_id'=>$tag_id,
+            'user_id'=>$user_id
         ];
+        
         Todo::create($todo);
         return redirect('/');
-        
+        $auths = Auth::user();
+        return view('create', [ 'auths' => $auths ]);
     }
+        
+        
+    
     public function update(TodoRequest $request)
     {
         $content= $request->content;

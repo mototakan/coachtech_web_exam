@@ -38,6 +38,7 @@
         <form action="/todo/create" method="post" class="flex between mb-30">
           @csrf
           <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+          <input type="hidden" name="user_id" value="{{ Auth::id() }}" >
           <input type="text" class="input-add" name="content">
           <select name="tag_id" class="select-tag">
             <option value="1">家事</option>
