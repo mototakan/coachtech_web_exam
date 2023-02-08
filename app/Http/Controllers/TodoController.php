@@ -30,7 +30,8 @@ class TodoController extends Controller
         $user= Auth::user();
         $tags=Tag::all();
         $keyword= $request->keyword;
-        $todos=Todo::doSearch($keyword);
+        $tag_id= $request->tag_id;
+        $todos=Todo::doSearch($keyword,$tag_id);
         return view('search',[
             'user'=>$user,
             'todos'=>$todos,

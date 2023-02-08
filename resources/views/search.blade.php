@@ -37,6 +37,13 @@
         <form action="/todo/search" method="get" class="flex between mb-30">
           @csrf
           <input type="text" name="keyword" value="{{ $keyword }}">
+          <select name="tag_id" class="select-tag">
+            <option value="1">家事</option>
+            <option value="2">勉強</option>
+            <option value="3">運動</option>
+            <option value="4">食事</option>
+            <option value="5">移動</option>
+          </select>
           <input class="button-add" type="submit" name="search" value="検索">
         </form>
         <table>
