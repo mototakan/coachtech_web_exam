@@ -66,6 +66,7 @@
                   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">              
                 <td>
                   <input type="text" class="input-update" value="{{$todo->content}}" name="content">
+                  
                 </td>
                 <td>
                   <select name="tag_id" class="select-tag">

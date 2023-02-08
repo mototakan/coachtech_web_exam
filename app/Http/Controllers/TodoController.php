@@ -77,6 +77,11 @@ class TodoController extends Controller
         ];
         Todo::where('id', $request->id)->update($todo);
         return redirect('/');
+
+        $form = $request->all();
+        unset($form['_token']);
+        Todo::find($request->id)->update($form);
+        return redirect('/');
     }
     public function delete(Request $request)
     {

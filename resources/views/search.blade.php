@@ -88,6 +88,7 @@
           </tbody>
         </table>
       </div>
+      <a class="btn btn-back" href="/">戻る</a>
     </div>
   </div>
   

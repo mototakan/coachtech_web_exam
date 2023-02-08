@@ -172,3 +172,10 @@ tr {
   border-color: #71fadc;
   color: #fff;
 }
+
+.btn-back {
+  border: 2px solid #6d7170;
+  color: #6d7170;
+  background-color: #fff;
+  text-decoration: none;
+}
