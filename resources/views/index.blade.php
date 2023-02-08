@@ -61,7 +61,7 @@
             @foreach ($todos as $todo)
             <tr>
                 <td>{{$todo->created_at}}</td>
-                <form action="/todos/update{{$todo->id}}" method="post">
+                <form action="/todo/update{{$todo->id}}" method="post">
                 @csrf
                   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">              
                 <td>
@@ -82,7 +82,7 @@
                 </td>
                 </form>
                 <td>
-                  <form action="/todos/delete{{$todo->id}}" method="post">
+                  <form action="/todo/delete{{$todo->id}}" method="post">
                   @csrf
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"> 
                     <button class="button-delete">削除</button>
