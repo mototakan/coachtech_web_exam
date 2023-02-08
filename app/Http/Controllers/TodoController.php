@@ -17,7 +17,7 @@ class TodoController extends Controller
         $todos=[];
         $user= Auth::user();
         $tags=Tag::all();
-        $keyword= $request->keyword;
+        $keyword= $request->content;
         return view('search',[
             'user'=>$user,
             'todos'=>$todos,
@@ -29,7 +29,8 @@ class TodoController extends Controller
     {
         $user= Auth::user();
         $tags=Tag::all();
-        $keyword= $request->keyword;
+        $keyword= $request->content;
+        dd($keyword);
         $tag_id= $request->tag_id;
         $todos=Todo::doSearch($keyword,$tag_id);
         return view('search',[

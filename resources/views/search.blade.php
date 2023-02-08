@@ -36,7 +36,7 @@
         </ul>
         <form action="/todo/search" method="get" class="flex between mb-30">
           @csrf
-          <input type="text" name="content" value="{{ $keyword }}">
+          <input type="text" name="content">
           <select name="tag_id" class="select-tag">
             <option disabled="" selected="" value=""></option>
             <option value="1">家事</option>
