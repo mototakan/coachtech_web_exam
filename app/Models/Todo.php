@@ -24,8 +24,8 @@ public static function doSearch($keyword)
 
     {
     $todo = self::query();
-    $todos=$todo->where('content','LIKE', '%'.$keyword.'%');
-    return $todo;
+    $todos=$todo->where('content','LIKE', '%'.$keyword.'%')->get();
+    return $todos;
     }
 
 
