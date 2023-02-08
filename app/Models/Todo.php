@@ -23,8 +23,8 @@ class Todo extends Model
 public static function doSearch($keyword)
 
     {
-    $todo=Todo::all();
-    $todo=$todo->where('content','LIKE', '%'.$keyword.'%');
+    $todo = self::query();
+    $todos=$todo->where('content','LIKE', '%'.$keyword.'%');
     return $todo;
     }
 
