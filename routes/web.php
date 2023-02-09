@@ -28,8 +28,7 @@ Route::post('/register',[RegisteredUserController::class,'store']);
 Route::post('/logout',[AuthenticatedSessionController::class,'destory']);
 Route::get('/todo/find',[TodoController::class,'find']);
 Route::get('/todo/search',[TodoController::class,'search']);
-Route::get('/middleware', [TodoController::class, 'get']);
-Route::post('/middleware', [TodoController::class, 'post']);
+Route::get('/', [TodoController::class, 'index'])->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
