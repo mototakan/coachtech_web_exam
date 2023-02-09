@@ -11,7 +11,6 @@ use App\Models\Tag;
 
 class TodoController extends Controller
 {
-    
     public function find(Request $request)
     {
         $todos=[];
@@ -42,6 +41,7 @@ class TodoController extends Controller
 
     public function index(Request $request)
     {
+        $todo = Todo::where('user_id', \Auth::user()->id)->get();
         $todo=Todo::all();
         $user= Auth::user();
         $param = ['todos'=> $todo, 'user'=>$user];
@@ -86,8 +86,4 @@ class TodoController extends Controller
         return redirect('/');
     }
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 }
