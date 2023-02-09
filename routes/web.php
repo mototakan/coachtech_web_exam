@@ -16,7 +16,6 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 |
 */
 
-Route::get('/home', [todoController::class, 'index']);
 Route::get('/', [TodoController::class, 'index'])->name('todo.index');
 Route::post('/todo/create', [TodoController::class, 'create'])->name('todo.create');
 Route::post('/todo/update{id}', [TodoController::class, 'update'])->name('todo.update');
@@ -26,8 +25,8 @@ Route::post('/login', [AuthenticatedSessionController::class,'store']);
 Route::get('/register',[RegisteredUserController::class,'create']);
 Route::post('/register',[RegisteredUserController::class,'store']);
 Route::post('/logout',[AuthenticatedSessionController::class,'destory']);
-Route::get('/todo/find',[TodoController::class,'find']);
-Route::get('/todo/search',[TodoController::class,'search']);
+Route::get('/todo/find',[TodoController::class,'find'])->middleware('auth');
+Route::get('/todo/search',[TodoController::class,'search'])->middleware('auth');
 Route::get('/', [TodoController::class, 'index'])->middleware('auth');
 
 Route::get('/dashboard', function () {
