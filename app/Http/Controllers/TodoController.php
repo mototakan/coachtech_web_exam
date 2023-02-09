@@ -13,6 +13,7 @@ class TodoController extends Controller
 {
     public function find(Request $request)
     {
+        $todo = Todo::where('user_id', \Auth::user()->id)->get();
         $todos=[];
         $user= Auth::user();
         $tags=Tag::all();
@@ -27,6 +28,7 @@ class TodoController extends Controller
 
     public function search(Request $request)
     {
+        $todo = Todo::where('user_id', \Auth::user()->id)->get();
         $user= Auth::user();
         $tags=Tag::all();
         $keyword= $request->content;
@@ -42,7 +44,6 @@ class TodoController extends Controller
     public function index(Request $request)
     {
         $todo = Todo::where('user_id', \Auth::user()->id)->get();
-        $todo=Todo::all();
         $user= Auth::user();
         $param = ['todos'=> $todo, 'user'=>$user];
         return view('index', $param);
