@@ -20,10 +20,11 @@ class Todo extends Model
         return $this->belongsTo('App\Models\Tag');
     }
 
-public static function doSearch($keyword)
+public static function doSearch($keyword,$tag_id)
 
     {
     $todo = self::query();
+    $tag = self::query();
     $todos=$todo->where('content','LIKE', '%'.$keyword.'%')->get();
     return $todos;
     }

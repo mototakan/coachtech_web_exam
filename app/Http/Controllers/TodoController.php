@@ -16,7 +16,8 @@ class TodoController extends Controller
         $todo = Todo::where('user_id', \Auth::user()->id)->get();
         $todos=[];
         $user= Auth::user();
-        $tags=Tag::all();
+        $tags=$request->input('tags');
+        $tag_id= $request->tag_id;
         $keyword= $request->content;
         return view('search',[
             'user'=>$user,
@@ -30,9 +31,13 @@ class TodoController extends Controller
     {
         $todo = Todo::where('user_id', \Auth::user()->id)->get();
         $user= Auth::user();
-        $tags=Tag::all();
         $keyword= $request->content;
         $tag_id= $request->tag_id;
+        $tags = Todo::where('tag_id',"{$request->input}")->get();
+        $param = [
+        'input' => $request->input
+        ];
+        return view('search',$param);
         $todos=Todo::doSearch($keyword,$tag_id);
         return view('search',[
             'user'=>$user,
@@ -47,8 +52,6 @@ class TodoController extends Controller
         $user= Auth::user();
         $param = ['todos'=> $todo, 'user'=>$user];
         return view('index', $param);
-        $tags=Tag::all();
-        return view('index',['tag'=>$tags]);
     }
     public function create(TodoRequest $request)
     {
