@@ -23,6 +23,7 @@ class TodoController extends Controller
             'todos'=>$todos,
             'tags'=>$tags,
             'keyword'=>$keyword]);
+            
     }
 
     public function search(Request $request)
@@ -85,4 +86,8 @@ class TodoController extends Controller
         return redirect('/');
     }
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 }
