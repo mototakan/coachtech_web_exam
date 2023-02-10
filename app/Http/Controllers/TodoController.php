@@ -33,17 +33,10 @@ class TodoController extends Controller
         $user= Auth::user();
         $keyword= $request->content;
         $tag_id= $request->tag_id;
-        $tags = Todo::where('tag_id',"{$request->input}")->get();
-        $param = [
-        'input' => $request->input
-        ];
-        return view('search',$param);
         $todos=Todo::doSearch($keyword,$tag_id);
         return view('search',[
             'user'=>$user,
-            'todos'=>$todos,
-            'tags'=>$tags,
-            'keyword'=>$keyword]);
+            'todos'=>$todos]);
     }
 
     public function index(Request $request)

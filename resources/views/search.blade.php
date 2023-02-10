@@ -66,11 +66,11 @@
                 </td>
                 <td>
                   <select name="tag_id" class="select-tag">
-                        <option value="1">家事</option>
-                        <option value="2">勉強</option>
-                        <option value="3">運動</option>
-                        <option value="4">食事</option>
-                        <option value="5">移動</option>
+                        <option {{$todo->isSelectedTag('1')}} value="1">家事</option>
+                        <option {{$todo->isSelectedTag('2')}} value="2">勉強</option>
+                        <option {{$todo->isSelectedTag('3')}} value="3">運動</option>
+                        <option {{$todo->isSelectedTag('4')}} value="4">食事</option>
+                        <option {{$todo->isSelectedTag('5')}} value="5">移動</option>
                   </select>
                 </td>
                 <td>

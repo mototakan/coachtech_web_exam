@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 
 class Todo extends Model
@@ -24,8 +25,16 @@ public static function doSearch($keyword,$tag_id)
 
     {
     $todo = self::query();
-    $tag = self::query();
-    $todos=$todo->where('content','LIKE', '%'.$keyword.'%')->get();
+    if (isset($keyword)) {
+        $todo->where('content', 'Like', "%{$keyword}%");
+    }
+    if (isset($tag_id)) {
+        $todo->where('tag_id', '=', $tag_id);
+    }
+    $user_id = Auth::id();
+    $todo->where('user_id', '=', $user_id)->get();
+    $todos = $todo->get();
+    $todos->where('user_id', '=', $user_id);
     return $todos;
     }
 
